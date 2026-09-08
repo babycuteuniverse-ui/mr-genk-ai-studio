@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MR.GENK AI STUDIO</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#0b0b0f;
+    color:white;
+    min-height:100vh;
+}
+
+header{
+    padding:30px 20px;
+    text-align:center;
+}
+
+header h1{
+    font-size:28px;
+    letter-spacing:2px;
+}
+
+header p{
+    color:#999;
+    margin-top:8px;
+}
+
+.container{
+    max-width:600px;
+    margin:auto;
+    padding:20px;
+}
+
+.card{
+    background:#15151c;
+    border:1px solid #292934;
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:16px;
+}
+
+.card h2{
+    margin-bottom:8px;
+}
+
+.card p{
+    color:#aaa;
+    margin-bottom:18px;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    border:0;
+    border-radius:12px;
+    background:white;
+    color:#111;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.85;
+}
+
+input,textarea,select{
+    width:100%;
+    padding:13px;
+    margin:8px 0 15px;
+    border-radius:10px;
+    border:1px solid #333;
+    background:#0e0e13;
+    color:white;
+}
+
+label{
+    font-size:13px;
+    color:#bbb;
+}
+
+.engine{
+    display:none;
+}
+
+.result{
+    margin-top:20px;
+    background:#09090d;
+    border:1px solid #30303b;
+    border-radius:12px;
+    padding:15px;
+    white-space:pre-wrap;
+    line-height:1.6;
+}
+
+.back{
+    background:#292934;
+    color:white;
+    margin-bottom:15px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>MR.GENK AI STUDIO</h1>
+<p>CREATE • DIRECT • AI</p>
+</header>
+
+<div class="container">
+
+<!-- HOME -->
+
+<div id="home">
+
+<div class="card">
+<h2>🤳 Affiliate</h2>
+<p>Natural Human + Talking Head + B-Roll</p>
+<button onclick="openEngine('affiliate')">OPEN AFFILIATE</button>
+</div>
+
+<div class="card">
+<h2>💃 Dance</h2>
+<p>Identity + Motion + Choreography Transfer</p>
+<button onclick="openEngine('dance')">OPEN DANCE</button>
+</div>
+
+<div class="card">
+<h2>🎬 Storyteller</h2>
+<p>Talking Head + B-Roll Story Engine</p>
+<button onclick="openEngine('story')">OPEN STORYTELLER</button>
+</div>
+
+</div>
+
+
+<!-- AFFILIATE -->
+
+<div id="affiliate" class="engine">
+
+<button class="back" onclick="goHome()">← BACK</button>
+
+<div class="card">
+
+<h2>🤳 AFFILIATE ENGINE</h2>
+
+<label>Character</label>
+<input placeholder="Contoh: wanita dari foto referensi">
+
+<label>Product</label>
+<input placeholder="Contoh: kaos polo zipper">
+
+<label>Product Action</label>
+<input placeholder="Contoh: memakai, merapikan zipper, berjalan">
+
+<label>Style</label>
+<select id="affiliateStyle">
+<option>Natural Human UGC</option>
+<option>Cinematic</option>
+<option>Casual Smartphone</option>
+</select>
+
+<label>Hook</label>
+<textarea id="affiliateHook"
+placeholder="Masukkan hook..."></textarea>
+
+<label>CTA</label>
+<textarea id="affiliateCTA"
+placeholder="Masukkan CTA..."></textarea>
+
+<button onclick="generateAffiliate()">GENERATE PROMPT</button>
+
+<div id="affiliateResult" class="result"></div>
+
+</div>
+</div>
+
+
+<!-- DANCE -->
+
+<div id="dance" class="engine">
+
+<button class="back" onclick="goHome()">← BACK</button>
+
+<div class="card">
+
+<h2>💃 DANCE ENGINE</h2>
+
+<label>Character</label>
+<input placeholder="Karakter dari foto original">
+
+<label>Dance Reference</label>
+<input placeholder="Video reference dance">
+
+<label>Motion Style</label>
+<select id="danceMotion">
+<option>Natural</option>
+<option>Energetic</option>
+<option>Precise Choreography</option>
+</select>
+
+<button onclick="generateDance()">GENERATE PROMPT</button>
+
+<div id="danceResult" class="result"></div>
+
+</div>
+</div>
+
+
+<!-- STORYTELLER -->
+
+<div id="story" class="engine">
+
+<button class="back" onclick="goHome()">← BACK</button>
+
+<div class="card">
+
+<h2>🎬 STORYTELLER ENGINE</h2>
+
+<label>Ide Cerita</label>
+<textarea id="storyIdea"
+placeholder="Contoh: manusia menghancurkan hutan demi keuntungan..."></textarea>
+
+<label>Durasi</label>
+<select id="storyDuration">
+<option>30 detik</option>
+<option>60 detik</option>
+<option>90 detik</option>
+<option>3 menit</option>
+</select>
+
+<label>Genre</label>
+<select id="storyGenre">
+<option>Emotional</option>
+<option>Dark</option>
+<option>Documentary</option>
+<option>Motivational</option>
+</select>
+
+<label>Talking Head</label>
+<select id="talkingRatio">
+<option>30% Talking Head / 70% B-Roll</option>
+<option>40% Talking Head / 60% B-Roll</option>
+<option>50% Talking Head / 50% B-Roll</option>
+</select>
+
+<button onclick="generateStory()">GENERATE STORY</button>
+
+<div id="storyResult" class="result"></div>
+
+</div>
+</div>
+
+</div>
+
+
+<script>
+
+function openEngine(engine){
+
+document.getElementById("home").style.display="none";
+
+document.querySelectorAll(".engine").forEach(function(el){
+el.style.display="none";
+});
+
+document.getElementById(engine).style.display="block";
+
+}
+
+function goHome(){
+
+document.querySelectorAll(".engine").forEach(function(el){
+el.style.display="none";
+});
+
+document.getElementById("home").style.display="block";
+
+}
+
+
+function generateAffiliate(){
+
+let style=document.getElementById("affiliateStyle").value;
+let hook=document.getElementById("affiliateHook").value;
+let cta=document.getElementById("affiliateCTA").value;
+
+let prompt=
+
+"OMNI FLASH — NATURAL HUMAN AFFILIATE\n\n"+
+
+"REFERENCE PRIORITY:\n"+
+"ORIGINAL CHARACTER IMAGE = IDENTITY SOURCE\n"+
+"PRODUCT IMAGE = PRODUCT SOURCE\n"+
+"REFERENCE VIDEO = MOTION/CAMERA SOURCE\n\n"+
+
+"IDENTITY LOCK:\n"+
+"Preserve the exact identity of the original character. "+
+"No face morphing, no identity drift.\n\n"+
+
+"PRODUCT LOCK:\n"+
+"Preserve exact product design, color, material, logo and details.\n\n"+
+
+"NATURAL HUMAN BEHAVIOR:\n"+
+"Act like a real person casually using and recommending the product. "+
+"Natural blinking, breathing, micro expressions, hand gestures and pauses.\n\n"+
+
+"PRODUCT INTERACTION:\n"+
+"Natural hand-object contact. Realistic holding, touching, adjusting and using the product.\n\n"+
+
+"CAMERA:\n"+
+"Real smartphone camera. Subtle handheld movement, natural reframing and focus adjustment.\n\n"+
+
+"STYLE:\n"+style+"\n\n"+
+
+"HOOK:\n"+hook+"\n\n"+
+
+"CTA:\n"+cta+"\n\n"+
+
+"PRIORITY:\n"+
+"Natural human behavior > cinematic perfection.\n"+
+"Physical realism > visual perfection.\n"+
+"Authentic product interaction > advertisement aesthetics.";
+
+document.getElementById("affiliateResult").innerText=prompt;
+
+}
+
+
+function generateDance(){
+
+let motion=document.getElementById("danceMotion").value;
+
+let prompt=
+
+"OMNI FLASH — DANCE MOTION TRANSFER\n\n"+
+
+"ORIGINAL IMAGE = CHARACTER IDENTITY SOURCE.\n"+
+"REFERENCE VIDEO = MOTION SOURCE ONLY.\n\n"+
+
+"Preserve exact face, hairstyle, clothing, body proportions and identity.\n\n"+
+
+"Transfer choreography, body movement, hand movement, leg movement, "+
+"head movement, rhythm, timing and transitions from the reference video.\n\n"+
+
+"Do NOT transfer the reference dancer's identity or appearance.\n\n"+
+
+"MOTION STYLE: "+motion+"\n\n"+
+
+"Use realistic human biomechanics, natural balance, realistic foot contact "+
+"and natural joint movement.\n\n"+
+
+"No identity drift. No face morphing. No body deformation. "+
+"No extra limbs. No flickering.";
+
+document.getElementById("danceResult").innerText=prompt;
+
+}
+
+
+function generateStory(){
+
+let idea=document.getElementById("storyIdea").value;
+let duration=document.getElementById("storyDuration").value;
+let genre=document.getElementById("storyGenre").value;
+let ratio=document.getElementById("talkingRatio").value;
+
+let result=
+
+"MR.GENK AI STORYTELLER\n\n"+
+
+"IDE:\n"+idea+"\n\n"+
+
+"DURATION: "+duration+"\n"+
+"GENRE: "+genre+"\n"+
+"FORMAT: "+ratio+"\n\n"+
+
+"STRUCTURE:\n\n"+
+
+"SCENE 1 — HOOK / TALKING HEAD\n"+
+"Strong opening statement directly to camera.\n\n"+
+
+"SCENE 2 — B-ROLL\n"+
+"Visual metaphor matching the narration.\n\n"+
+
+"SCENE 3 — TALKING HEAD\n"+
+"Character continues narration with subtle emotion.\n\n"+
+
+"SCENE 4 — B-ROLL\n"+
+"Cinematic supporting visual with natural camera movement.\n\n"+
+
+"SCENE 5 — ENDING / TALKING HEAD\n"+
+"Emotional conclusion and CTA.\n\n"+
+
+"STYLE:\n"+
+"Natural human performance, realistic expression, "+
+"realistic movement, cinematic B-roll, subtle handheld camera, "+
+"natural lighting and temporal consistency.";
+
+document.getElementById("storyResult").innerText=result;
+
+}
+p
+</script>
+
+</body>
+</html>
