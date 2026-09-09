@@ -3,285 +3,202 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>MR GENK AI STUDIO V2.2</title>
+<title>MR.GENK AI STUDIO V2.3</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-
+*{box-sizing:border-box}
 body{
+margin:0;
 font-family:Arial,Helvetica,sans-serif;
-background:#08090d;
-color:#f5f5f5;
-min-height:100vh
+background:#090909;
+color:#fff;
 }
-
 .container{
-width:100%;
 max-width:1100px;
 margin:auto;
-padding:18px
+padding:20px;
 }
-
-header{
+.header{
 text-align:center;
-padding:22px 5px
+padding:25px 10px;
+border-bottom:1px solid #292929;
+margin-bottom:20px;
 }
-
-.logo{
-font-size:29px;
-font-weight:900;
-letter-spacing:1px
+.header h1{
+margin:0;
+font-size:28px;
+letter-spacing:2px;
 }
-
-.logo span{color:#00e5ff}
-
-.subtitle{
+.header p{
+margin:8px 0 0;
+color:#999;
 font-size:13px;
-color:#858b98;
-margin-top:7px
+letter-spacing:2px;
 }
-
 .tabs{
 display:flex;
 gap:8px;
+margin-bottom:20px;
 overflow-x:auto;
-margin-bottom:18px
 }
-
 .tab{
 flex:1;
-min-width:115px;
-padding:13px 9px;
-border-radius:12px;
-border:1px solid #292d38;
-background:#11131a;
+min-width:120px;
+padding:13px 10px;
+background:#171717;
+border:1px solid #292929;
 color:#aaa;
+border-radius:10px;
 font-weight:bold;
-cursor:pointer
+cursor:pointer;
 }
-
 .tab.active{
-background:#00e5ff;
-color:#061015;
-border-color:#00e5ff
+background:#fff;
+color:#000;
 }
-
-.engine{display:none}
-.engine.active{display:block}
-
+.engine{
+display:none;
+}
+.engine.active{
+display:block;
+}
 .card{
-background:#11131a;
-border:1px solid #292d38;
-border-radius:18px;
-padding:17px;
-margin-bottom:15px
+background:#111;
+border:1px solid #292929;
+border-radius:15px;
+padding:18px;
+margin-bottom:16px;
 }
-
 .card h2{
-font-size:18px;
-margin-bottom:5px
+font-size:17px;
+margin:0 0 15px;
 }
-
-.desc{
-font-size:12px;
-color:#858b98;
-margin-bottom:15px
+.card h3{
+font-size:14px;
+margin:18px 0 8px;
+color:#ddd;
 }
-
 .grid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
-gap:12px
+gap:12px;
 }
-
-.full{grid-column:1/-1}
-
-.field{margin-bottom:11px}
-
+@media(max-width:700px){
+.grid{grid-template-columns:1fr}
+}
 label{
 display:block;
 font-size:12px;
-font-weight:bold;
-color:#c7cbd3;
-margin-bottom:6px
+color:#aaa;
+margin-bottom:6px;
 }
-
 input,textarea,select{
 width:100%;
-background:#090b10;
-color:#fff;
-border:1px solid #303541;
-border-radius:10px;
-padding:11px;
-font-size:13px;
-outline:none
-}
-
-textarea{
-min-height:78px;
-resize:vertical
-}
-
-input:focus,textarea:focus,select:focus{
-border-color:#00e5ff
-}
-
-.upload{
-border:1px dashed #3c4652;
-border-radius:14px;
-padding:15px;
-background:#0b0d12;
-text-align:center;
-margin-bottom:13px
-}
-
-.upload input{
-border:none;
-background:none;
-padding:8px
-}
-
-.preview{
-display:none;
-width:100%;
-max-height:280px;
-object-fit:contain;
-border-radius:12px;
-margin-top:10px;
-background:#050608
-}
-
-.lock{
-background:#0c1518;
-border:1px solid #174c55;
-border-radius:12px;
-padding:11px;
-font-size:11px;
-color:#9faab2;
-line-height:1.5
-}
-
-.lock strong{
-display:block;
-color:#00e5ff;
-margin-bottom:4px
-}
-
-.checks{
-display:flex;
-flex-wrap:wrap;
-gap:7px
-}
-
-.check{
-display:flex;
-align-items:center;
-gap:6px;
-background:#090b10;
-border:1px solid #292e38;
+background:#181818;
+border:1px solid #333;
 border-radius:9px;
-padding:8px 9px;
-font-size:11px;
-color:#bbb
+padding:11px;
+color:#fff;
+outline:none;
+font-size:13px;
 }
-
-.check input{width:auto}
-
+textarea{
+min-height:90px;
+resize:vertical;
+}
+input:focus,textarea:focus,select:focus{
+border-color:#777;
+}
+.upload{
+border:1px dashed #555;
+border-radius:12px;
+padding:15px;
+text-align:center;
+cursor:pointer;
+background:#151515;
+}
+.upload input{
+display:none;
+}
+.preview{
+margin-top:12px;
+display:none;
+}
+.preview img{
+width:100%;
+max-height:260px;
+object-fit:contain;
+border-radius:10px;
+background:#000;
+}
+.checks{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:8px;
+}
+.check{
+background:#171717;
+padding:10px;
+border-radius:8px;
+font-size:12px;
+}
+.check input{
+width:auto;
+margin-right:6px;
+}
 .btn{
 width:100%;
-border:none;
-border-radius:12px;
 padding:14px;
-font-size:14px;
-font-weight:900;
+border:0;
+border-radius:10px;
+font-weight:bold;
 cursor:pointer;
-margin-top:6px
+margin-top:8px;
 }
-
-.primary{
-background:#00e5ff;
-color:#041014
+.generate{
+background:#fff;
+color:#000;
 }
-
-.secondary{
-background:#20232d;
-color:#fff
-}
-
-.danger{
-background:#29171b;
-color:#ff9ca8
-}
-
-.output{
-background:#07080c;
-border:1px solid #292d38;
-border-radius:14px;
-padding:13px;
-margin-top:12px
-}
-
-.output-head{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:9px
-}
-
-.output-head h3{font-size:14px}
-
 .copy{
-background:#20242e;
+background:#252525;
 color:#fff;
-border:1px solid #383d49;
-border-radius:8px;
-padding:7px 10px;
-font-size:11px;
-cursor:pointer
+border:1px solid #444;
 }
-
-pre{
+.reset{
+background:#151515;
+color:#aaa;
+border:1px solid #333;
+}
+.output{
 white-space:pre-wrap;
-word-wrap:break-word;
-font-family:Arial,sans-serif;
+background:#080808;
+border:1px solid #333;
+border-radius:10px;
+padding:15px;
 font-size:12px;
 line-height:1.6;
-color:#d7dbe2
+min-height:100px;
 }
-
 .badge{
 display:inline-block;
-font-size:10px;
-padding:5px 8px;
+padding:5px 9px;
 border-radius:20px;
-background:#192126;
-border:1px solid #20434b;
-color:#00e5ff;
-margin-bottom:9px
+background:#222;
+color:#aaa;
+font-size:10px;
+margin-bottom:10px;
 }
-
-.info{
+.small{
 font-size:11px;
+color:#777;
 line-height:1.5;
-color:#9299a5;
-background:#0b0d12;
-border-radius:10px;
-padding:10px;
-margin-top:10px
 }
-
-footer{
-text-align:center;
-padding:22px;
-color:#555b66;
-font-size:10px
+.row{
+display:flex;
+gap:8px;
 }
-
-@media(max-width:700px){
-.grid{grid-template-columns:1fr}
-.full{grid-column:auto}
-.container{padding:11px}
-.logo{font-size:25px}
+.row .btn{
+flex:1;
 }
 </style>
 </head>
@@ -290,301 +207,273 @@ font-size:10px
 
 <div class="container">
 
-<header>
-<div class="logo">MR GENK <span>AI STUDIO</span></div>
-<div class="subtitle">AI Video Prompt Generator • V2.2</div>
-</header>
-
-<div class="tabs">
-<button class="tab active" onclick="openTab('affiliate',this)">🤳 Affiliate</button>
-<button class="tab" onclick="openTab('story',this)">🎬 Storyteller</button>
-<button class="tab" onclick="openTab('dance',this)">💃 Dance</button>
+<div class="header">
+<h1>MR.GENK AI STUDIO</h1>
+<p>CREATE • DIRECT • AI</p>
 </div>
 
+<div class="tabs">
+<button class="tab active" onclick="showEngine('affiliate',this)">🤳 Affiliate</button>
+<button class="tab" onclick="showEngine('dance',this)">💃 Dance</button>
+<button class="tab" onclick="showEngine('story',this)">🎬 Storyteller</button>
+</div>
 
 <!-- ================= AFFILIATE ================= -->
 
 <section id="affiliate" class="engine active">
 
 <div class="card">
-
-<span class="badge">CHARACTER DNA</span>
-
-<h2>📸 Upload Character</h2>
-<p class="desc">
-Upload foto model/karakter sebagai reference. Foto tidak dikirim ke server oleh fitur ini.
-</p>
-
-<div class="upload">
-
-<input
-type="file"
-id="characterImage"
-accept="image/*"
-onchange="previewImage(this,'characterPreview')">
-
-<img
-id="characterPreview"
-class="preview"
-alt="Character Preview">
-
-</div>
+<span class="badge">AFFILIATE V2.3</span>
+<h2>📸 Reference Images</h2>
 
 <div class="grid">
 
-<div class="field">
+<div>
+<label>Character Reference</label>
+<label class="upload">
+<input type="file" accept="image/*" onchange="previewImage(this,'charPreview')">
+📸 Pilih foto karakter
+</label>
+<div id="charPreview" class="preview">
+<img>
+</div>
+</div>
+
+<div>
+<label>Product Reference</label>
+<label class="upload">
+<input type="file" accept="image/*" onchange="previewImage(this,'productPreview')">
+📦 Pilih foto produk
+</label>
+<div id="productPreview" class="preview">
+<img>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="card">
+<h2>👤 Character DNA</h2>
+
+<div class="grid">
+
+<div>
 <label>Character ID</label>
-<input id="charName" placeholder="GENK-01">
+<input id="charId" placeholder="Contoh: GENK-MALE-01">
 </div>
 
-<div class="field">
-<label>Gender & Usia</label>
-<input id="charAge" placeholder="Pria Indonesia, 25 tahun">
+<div>
+<label>Gender & Age</label>
+<input id="charAge" placeholder="Contoh: Pria 25 tahun">
 </div>
 
-<div class="field full">
-<label>Deskripsi Wajah</label>
-<textarea id="charFace" placeholder="Wajah, rambut, kulit, bentuk wajah..."></textarea>
+<div>
+<label>Face Description</label>
+<textarea id="face" placeholder="Bentuk wajah, rambut, kulit, ciri wajah..."></textarea>
 </div>
 
-<div class="field full">
+<div>
 <label>Outfit</label>
-<textarea id="charOutfit" placeholder="Pakaian yang dipakai karakter..."></textarea>
+<textarea id="outfit" placeholder="Pakaian, warna, sepatu, aksesori..."></textarea>
 </div>
 
-<div class="field full">
+<div>
 <label>Personality</label>
-<textarea id="charPersonality" placeholder="Santai, percaya diri, friendly..."></textarea>
+<textarea id="personality" placeholder="Santai, percaya diri, friendly..."></textarea>
 </div>
 
 </div>
-
-<div class="lock">
-<strong>🔒 CHARACTER IDENTITY LOCK</strong>
-Gunakan foto yang di-upload sebagai character reference. Wajah, rambut, usia, bentuk tubuh dan outfit harus konsisten di Scene 1 dan Scene 2.
 </div>
-
-</div>
-
 
 <div class="card">
-
-<span class="badge">PRODUCT DNA</span>
-
-<h2>📸 Upload Product</h2>
-<p class="desc">
-Upload foto produk utama sebagai reference visual.
-</p>
-
-<div class="upload">
-
-<input
-type="file"
-id="productImage"
-accept="image/*"
-onchange="previewImage(this,'productPreview')">
-
-<img
-id="productPreview"
-class="preview"
-alt="Product Preview">
-
-</div>
+<h2>📦 Product DNA</h2>
 
 <div class="grid">
 
-<div class="field">
-<label>Nama Produk</label>
-<input id="productName" placeholder="Kaos Polo Zipper">
+<div>
+<label>Product Name</label>
+<input id="productName" placeholder="Contoh: Kaos Polo Zipper">
 </div>
 
-<div class="field">
-<label>Warna</label>
-<input id="productColor" placeholder="Putih">
+<div>
+<label>Color</label>
+<input id="productColor" placeholder="Contoh: Putih">
 </div>
 
-<div class="field">
+<div>
 <label>Brand / Logo</label>
-<input id="productBrand" placeholder="Tulis persis sesuai produk">
+<input id="brand" placeholder="Nama brand/logo sesuai foto">
 </div>
 
-<div class="field">
-<label>Tulisan / Print</label>
-<input id="productText" placeholder="Tulis persis sesuai produk">
+<div>
+<label>Printed Text</label>
+<input id="printed" placeholder="Tulisan pada produk">
 </div>
 
-<div class="field full">
+<div>
 <label>Material / Detail</label>
-<textarea id="productMaterial" placeholder="Material, zipper, kerah, jahitan, tekstur..."></textarea>
+<textarea id="material" placeholder="Bahan, tekstur, zipper, jahitan, kerah..."></textarea>
 </div>
 
-<div class="field full">
+<div>
 <label>Benefit</label>
-<textarea id="productBenefit" placeholder="Nyaman, mudah dipadukan, terlihat rapi..."></textarea>
+<textarea id="benefit" placeholder="Nyaman, adem, mudah dipadukan..."></textarea>
 </div>
 
 </div>
-
-<div class="lock">
-<strong>🔒 PRODUCT DNA LOCK</strong>
-Gunakan foto yang di-upload sebagai exact product reference. Jangan mengubah warna, logo, tulisan, bentuk, zipper, kerah, jahitan, tekstur atau detail produk.
 </div>
-
-</div>
-
 
 <div class="card">
-
-<span class="badge">VIDEO CONCEPT</span>
+<h2>🎯 Video Concept</h2>
 
 <div class="grid">
 
-<div class="field">
+<div>
 <label>Hook Scene 1</label>
-<textarea id="hook1" placeholder="Kalau mau tampil rapi tapi tetap santai..."></textarea>
+<textarea id="hook" placeholder="Tulis hook atau biarkan kosong untuk dibuat otomatis"></textarea>
 </div>
 
-<div class="field">
+<div>
 <label>Benefit Scene 2</label>
-<textarea id="benefit2" placeholder="Bahannya nyaman dan gampang dipadukan..."></textarea>
+<textarea id="benefitScene" placeholder="Tulis benefit atau biarkan kosong"></textarea>
 </div>
 
-<div class="field">
+<div>
 <label>CTA Scene 1</label>
-<textarea id="cta1" placeholder="Lihat dulu detailnya."></textarea>
+<input id="cta1" placeholder="Contoh: Lihat dulu detailnya.">
 </div>
 
-<div class="field">
+<div>
 <label>CTA Scene 2</label>
-<textarea id="cta2" placeholder="Kalau suka, cek produknya."></textarea>
+<input id="cta2" placeholder="Contoh: Kalau suka, cek produknya.">
 </div>
 
-<div class="field">
-<label>Lokasi</label>
-<input id="location" placeholder="Cafe minimalis">
+<div>
+<label>Location</label>
+<input id="location" placeholder="Contoh: kamar minimalis">
 </div>
 
-<div class="field">
-<label>Waktu</label>
-<select id="time">
-<option>Pagi</option>
-<option>Siang</option>
-<option>Sore</option>
-<option>Malam</option>
-</select>
+<div>
+<label>Time</label>
+<input id="time" placeholder="Contoh: sore hari">
 </div>
 
-<div class="field">
-<label>Kamera</label>
+<div>
+<label>Camera</label>
 <select id="camera">
 <option>Raw iPhone Pro Max 17 Pro</option>
-<option>Natural handheld smartphone</option>
-<option>Cinematic handheld</option>
+<option>Handheld smartphone</option>
+<option>Natural smartphone camera</option>
 </select>
 </div>
 
-<div class="field">
+<div>
 <label>Format</label>
 <select id="format">
 <option>9:16 vertical</option>
-<option>9:16 TikTok / Reels / Shorts</option>
+<option>16:9 horizontal</option>
 </select>
 </div>
 
 </div>
-
 </div>
 
-
 <div class="card">
-
-<span class="badge">STYLE LOCK</span>
+<h2>🔒 Style Lock</h2>
 
 <div class="checks">
-
-<label class="check">
-<input type="checkbox" id="realism" checked>
-Human realism
-</label>
-
-<label class="check">
-<input type="checkbox" id="micro" checked>
-Micro-expression
-</label>
-
-<label class="check">
-<input type="checkbox" id="nobokeh" checked>
-No bokeh
-</label>
-
-<label class="check">
-<input type="checkbox" id="noblur" checked>
-No background blur
-</label>
-
-<label class="check">
-<input type="checkbox" id="nomusic" checked>
-No music
-</label>
-
-<label class="check">
-<input type="checkbox" id="natural" checked>
-Natural lighting
-</label>
-
-<label class="check">
-<input type="checkbox" id="slang" checked>
-Indonesian slang
-</label>
-
+<label class="check"><input type="checkbox" id="human" checked> Human realism</label>
+<label class="check"><input type="checkbox" id="micro" checked> Micro-expression</label>
+<label class="check"><input type="checkbox" id="nobokeh" checked> No bokeh</label>
+<label class="check"><input type="checkbox" id="noblur" checked> No background blur</label>
+<label class="check"><input type="checkbox" id="nomusic" checked> No music</label>
+<label class="check"><input type="checkbox" id="natural" checked> Natural lighting</label>
+<label class="check"><input type="checkbox" id="slang" checked> Indonesian slang</label>
 </div>
-
-<div class="info">
-Narasi dibuat pendek agar natural untuk video 10 detik. Scene 1 dan Scene 2 menggunakan Character DNA + Product DNA yang sama.
 </div>
-
-</div>
-
 
 <div class="card">
+<button class="btn generate" onclick="generateAffiliate()">⚡ GENERATE AFFILIATE V2.3</button>
+<button class="btn reset" onclick="resetAffiliate()">RESET</button>
+</div>
 
-<button class="btn primary" onclick="generateAffiliate()">
-⚡ GENERATE AFFILIATE V2.2
-</button>
+<div class="card">
+<h2>🎬 Scene 1 — Hook</h2>
 
-<button class="btn secondary" onclick="copyAll()">
-📋 COPY SEMUA SCENE
-</button>
+<div id="scene1Prompt" class="output">Prompt Scene 1 akan muncul di sini...</div>
 
-<button class="btn danger" onclick="resetAffiliate()">
-↻ RESET
-</button>
+<div class="row">
+<button class="btn copy" onclick="copyOutput('scene1Prompt')">📋 Copy Prompt</button>
+<button class="btn copy" onclick="copyOutput('narration1')">🎙️ Copy Narasi</button>
+</div>
 
-<div id="affiliateOutput"></div>
+<h3>🎙️ Narasi Scene 1</h3>
+<div id="narration1" class="output">Narasi Scene 1 akan muncul di sini...</div>
+</div>
 
+<div class="card">
+<h2>🎬 Scene 2 — Benefit + CTA</h2>
+
+<div id="scene2Prompt" class="output">Prompt Scene 2 akan muncul di sini...</div>
+
+<div class="row">
+<button class="btn copy" onclick="copyOutput('scene2Prompt')">📋 Copy Prompt</button>
+<button class="btn copy" onclick="copyOutput('narration2')">🎙️ Copy Narasi</button>
+</div>
+
+<h3>🎙️ Narasi Scene 2</h3>
+<div id="narration2" class="output">Narasi Scene 2 akan muncul di sini...</div>
+</div>
+
+<div class="card">
+<button class="btn copy" onclick="copyAllAffiliate()">📋 COPY ALL SCENE + NARASI</button>
 </div>
 
 </section>
 
+<!-- ================= DANCE ================= -->
+
+<section id="dance" class="engine">
+
+<div class="card">
+<span class="badge">DANCE ENGINE</span>
+<h2>💃 Identity + Motion + Choreography Transfer</h2>
+
+<label>Character Description</label>
+<textarea id="danceCharacter" placeholder="Deskripsikan karakter..."></textarea>
+
+<label>Dance Reference</label>
+<textarea id="danceReference" placeholder="Deskripsikan dance reference / gerakan..."></textarea>
+
+<label>Motion Style</label>
+<textarea id="motionStyle" placeholder="Natural, energetic, realistic..."></textarea>
+
+<button class="btn generate" onclick="generateDance()">💃 GENERATE DANCE PROMPT</button>
+</div>
+
+<div class="card">
+<h2>Output</h2>
+<div id="danceOutput" class="output">Dance prompt akan muncul di sini...</div>
+<button class="btn copy" onclick="copyOutput('danceOutput')">📋 COPY</button>
+</div>
+
+</section>
 
 <!-- ================= STORYTELLER ================= -->
 
 <section id="story" class="engine">
 
 <div class="card">
+<span class="badge">STORYTELLER ENGINE</span>
+<h2>🎬 Talking Head + B-Roll Story Engine</h2>
 
-<span class="badge">STORYTELLER</span>
-
-<h2>🎬 Story Setup</h2>
+<label>Ide Cerita</label>
+<textarea id="storyIdea" placeholder="Contoh: seseorang yang terlalu sering menyenangkan orang lain"></textarea>
 
 <div class="grid">
 
-<div class="field">
-<label>Judul / Topik</label>
-<input id="storyTitle" placeholder="People Pleaser: Berhenti Selalu Menyenangkan Orang Lain">
-</div>
-
-<div class="field">
+<div>
 <label>Durasi</label>
 <select id="storyDuration">
 <option>30 detik</option>
@@ -594,670 +483,391 @@ Narasi dibuat pendek agar natural untuk video 10 detik. Scene 1 dan Scene 2 meng
 </select>
 </div>
 
-<div class="field">
+<div>
 <label>Genre</label>
 <select id="storyGenre">
 <option>Self Reminder</option>
 <option>Dark Psychology</option>
-<option>Reflective</option>
-<option>Motivational</option>
 <option>Storytelling</option>
+<option>Motivational</option>
 </select>
 </div>
 
-<div class="field">
-<label>Style</label>
-<select id="storyStyle">
-<option>Talking Head Natural</option>
-<option>Dark Cinematic Storyteller</option>
-<option>Personal Confession</option>
-<option>Calm Reflective</option>
-</select>
 </div>
 
-<div class="field full">
-<label>Pesan Utama</label>
-<textarea id="storyMessage"></textarea>
+<label>Talking Head Character</label>
+<textarea id="storyHost" placeholder="Pria dewasa, natural, ekspresi tenang..."></textarea>
+
+<button class="btn generate" onclick="generateStory()">🎬 GENERATE STORY</button>
 </div>
-
-<div class="field full">
-<label>Closing</label>
-<textarea id="storyClosing"></textarea>
-</div>
-
-</div>
-
-<button class="btn primary" onclick="generateStory()">
-🎬 GENERATE STORYTELLER
-</button>
-
-<div id="storyOutput"></div>
-
-</div>
-
-</section>
-
-
-<!-- ================= DANCE ================= -->
-
-<section id="dance" class="engine">
 
 <div class="card">
-
-<span class="badge">DANCE ENGINE</span>
-
-<h2>💃 Dance Setup</h2>
-
-<div class="grid">
-
-<div class="field">
-<label>Character</label>
-<input id="danceCharacter" placeholder="Pria Indonesia 25 tahun">
-</div>
-
-<div class="field">
-<label>Outfit</label>
-<input id="danceOutfit" placeholder="Black oversized t-shirt, jeans">
-</div>
-
-<div class="field full">
-<label>Dance Reference</label>
-<textarea id="danceReference"></textarea>
-</div>
-
-<div class="field">
-<label>Lokasi</label>
-<input id="danceLocation" placeholder="Studio">
-</div>
-
-<div class="field">
-<label>Kamera</label>
-<select id="danceCamera">
-<option>Full body smartphone shot</option>
-<option>Handheld smartphone</option>
-<option>Static camera</option>
-<option>Dynamic tracking</option>
-</select>
-</div>
-
-</div>
-
-<button class="btn primary" onclick="generateDance()">
-💃 GENERATE DANCE PROMPT
-</button>
-
-<div id="danceOutput"></div>
-
+<h2>Output</h2>
+<div id="storyOutput" class="output">Story prompt akan muncul di sini...</div>
+<button class="btn copy" onclick="copyOutput('storyOutput')">📋 COPY</button>
 </div>
 
 </section>
 
-
-<footer>
-MR GENK AI STUDIO V2.2
-</footer>
-
 </div>
-
 
 <script>
 
-/* ================= TAB ================= */
-
-function openTab(id,btn){
-
-document.querySelectorAll(".engine")
-.forEach(x=>x.classList.remove("active"));
-
-document.querySelectorAll(".tab")
-.forEach(x=>x.classList.remove("active"));
-
-document.getElementById(id)
-.classList.add("active");
-
-btn.classList.add("active");
+function showEngine(id,button){
+document.querySelectorAll('.engine').forEach(e=>e.classList.remove('active'));
+document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+button.classList.add('active');
 }
 
-
-/* ================= IMAGE PREVIEW ================= */
-
-function previewImage(input,target){
-
+function previewImage(input,id){
 const file=input.files[0];
-
 if(!file)return;
 
-const img=document.getElementById(target);
+const box=document.getElementById(id);
+const img=box.querySelector('img');
 
 img.src=URL.createObjectURL(file);
-
-img.style.display="block";
+box.style.display='block';
 }
-
-
-/* ================= HELPERS ================= */
 
 function val(id){
-const e=document.getElementById(id);
-return e ? e.value.trim() : "";
+return document.getElementById(id).value.trim();
 }
 
-function yes(id){
-return document.getElementById(id)?.checked;
+function checked(id){
+return document.getElementById(id).checked;
 }
-
-function esc(t){
-return t
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;");
-}
-
-function output(container,title,text){
-
-const div=document.createElement("div");
-
-div.className="output";
-
-div.innerHTML=`
-<div class="output-head">
-<h3>${title}</h3>
-<button class="copy" onclick="copyOne(this)">COPY</button>
-</div>
-<pre>${esc(text)}</pre>
-`;
-
-document.getElementById(container).appendChild(div);
-}
-
-function copyOne(btn){
-
-const text=btn.parentElement
-.nextElementSibling.innerText;
-
-navigator.clipboard.writeText(text);
-
-btn.innerText="COPIED ✓";
-
-setTimeout(()=>{
-btn.innerText="COPY";
-},1200);
-}
-
-
-/* ================= DNA ================= */
-
-function characterDNA(){
-
-return `
-CHARACTER REFERENCE:
-Use the uploaded Character Reference Image as the PRIMARY visual identity reference.
-
-CHARACTER ID:
-${val("charName")}
-
-GENDER / AGE:
-${val("charAge")}
-
-FACE:
-${val("charFace")}
-
-OUTFIT:
-${val("charOutfit")}
-
-PERSONALITY:
-${val("charPersonality")}
-
-CHARACTER LOCK:
-Exact same person in Scene 1 and Scene 2.
-Preserve facial identity, face shape, hairstyle, skin tone, age, body proportions and wardrobe.
-No face drift.
-No identity mutation.
-No wardrobe mutation.
-`;
-}
-
-
-function productDNA(){
-
-return `
-PRODUCT REFERENCE:
-Use the uploaded Product Reference Image as the PRIMARY and EXACT product reference.
-
-PRODUCT:
-${val("productName")}
-
-COLOR:
-${val("productColor")}
-
-BRAND / LOGO:
-${val("productBrand")}
-
-PRINTED TEXT:
-${val("productText")}
-
-MATERIAL / DETAIL:
-${val("productMaterial")}
-
-BENEFIT:
-${val("productBenefit")}
-
-PRODUCT LOCK:
-Preserve the exact product shown in the reference image.
-Do not change color.
-Do not change logo.
-Do not change brand text.
-Do not change typography.
-Do not redesign the product.
-Do not change zipper, buttons, collar, stitching, texture or proportions.
-No product mutation.
-`;
-}
-
-
-function styleDNA(){
-
-let a=[];
-
-if(yes("realism"))a.push("photorealistic human realism");
-if(yes("micro"))a.push("subtle micro-expressions and micro-reactions");
-if(yes("nobokeh"))a.push("NO bokeh");
-if(yes("noblur"))a.push("NO background blur");
-if(yes("nomusic"))a.push("NO background music");
-if(yes("natural"))a.push("natural realistic lighting");
-if(yes("slang"))a.push("natural Indonesian daily slang");
-
-return `
-STYLE LOCK:
-${a.join("\n")}
-
-CAMERA:
-${val("camera")}
-
-FORMAT:
-${val("format")}
-
-Natural smartphone footage.
-Natural skin texture.
-Natural blinking.
-Natural breathing.
-Natural body movement.
-Natural hand gestures.
-Avoid plastic skin.
-Avoid beauty filter.
-Avoid over-polished AI appearance.
-Avoid excessive cinematic effects.
-`;
-}
-
-
-/* ================= AFFILIATE GENERATOR ================= */
 
 function generateAffiliate(){
 
-document.getElementById("affiliateOutput").innerHTML="";
+const product=val('productName') || 'produk fashion';
+const color=val('productColor') || 'sesuai reference image';
+const brand=val('brand') || 'sesuai reference image';
+const printed=val('printed') || 'jangan diubah';
+const material=val('material') || 'sesuai detail pada reference image';
+const benefit=val('benefit') || 'nyaman digunakan dan mudah dipadukan';
+const location=val('location') || 'ruangan rumah yang natural';
+const time=val('time') || 'siang hari';
+const camera=val('camera');
+const format=val('format');
 
-const scene1=`
+const character=val('charId') || 'CHARACTER-01';
+const age=val('charAge') || 'sesuai reference image';
+const face=val('face') || 'ikuti persis reference image';
+const outfit=val('outfit') || 'ikuti reference image';
+const personality=val('personality') || 'friendly, natural, percaya diri';
 
-SCENE 1 — 10 SECONDS
+let hook=val('hook');
+let benefitScene=val('benefitScene');
+let cta1=val('cta1') || 'Lihat dulu detailnya.';
+let cta2=val('cta2') || 'Kalau suka, cek produknya.';
 
-FORMAT:
-${val("format")}
+if(!hook){
+hook=`Kalau mau tampil rapi tapi tetap santai, ${product} ini bisa banget jadi pilihan.`;
+}
+
+if(!benefitScene){
+benefitScene=`Bahannya nyaman dipakai dan modelnya gampang dipadukan buat outfit harian.`;
+}
+
+const narration1=hook + ' ' + cta1;
+const narration2=benefitScene + ' ' + cta2;
+
+let locks=[];
+
+if(checked('human'))locks.push('human realism');
+if(checked('micro'))locks.push('subtle micro-expressions and micro-reactions');
+if(checked('nobokeh'))locks.push('NO bokeh');
+if(checked('noblur'))locks.push('NO background blur');
+if(checked('nomusic'))locks.push('NO music');
+if(checked('natural'))locks.push('natural realistic lighting');
+if(checked('slang'))locks.push('natural Indonesian daily slang');
+
+const lockText=locks.join(', ');
+
+const scene1=
+`SCENE 1 — 10 SECONDS — VISUAL HOOK
+
+REFERENCE LOCK:
+Use the uploaded Character Reference Image as the PRIMARY identity reference.
+Use the uploaded Product Reference Image as the PRIMARY product reference.
+
+CHARACTER DNA:
+Character ID: ${character}
+Gender/Age: ${age}
+Face: ${face}
+Outfit: ${outfit}
+Personality: ${personality}
+
+PRODUCT DNA:
+Product: ${product}
+Color: ${color}
+Brand/Logo: ${brand}
+Printed Text: ${printed}
+Material/Detail: ${material}
+
+ACTION:
+Character naturally enters frame while wearing or holding the exact product.
+Start with an immediate visual hook.
+Show the product clearly within the first seconds.
+Use a subtle natural gesture toward the zipper, collar, fabric or main product detail.
+Facial expression must feel spontaneous and human.
 
 LOCATION:
-${val("location")}
-
-TIME:
-${val("time")}
-
-${characterDNA()}
-
-${productDNA()}
-
-ACTION:
-
-Start immediately with a visual hook.
-The character is naturally wearing or holding the exact product from the uploaded reference image.
-
-The character looks comfortable and confident.
-
-Use subtle realistic body movement.
-Natural blinking.
-Natural breathing.
-Small hand movement.
-
-Show the product clearly during the first seconds.
-
-DIALOGUE / HOOK:
-
-"${val("hook1")}"
-
-After speaking the hook, naturally show or touch one visible product detail.
-
-CTA:
-
-"${val("cta1")}"
+${location}, ${time}.
 
 CAMERA:
+${camera}, handheld smartphone realism, natural slight camera movement, realistic exposure.
 
-${val("camera")}
+STYLE LOCK:
+${lockText}
 
-Start medium shot.
-Move naturally closer to the product.
-Handheld smartphone feel.
-No artificial camera movement.
+CONSISTENCY:
+Do not change the character face.
+Do not change hairstyle.
+Do not change body identity.
+Do not change outfit.
+Do not mutate product color.
+Do not alter logo.
+Do not alter printed text.
+Do not invent additional brand elements.
+Keep product geometry and details consistent with the reference image.
 
 AUDIO:
-
-Natural Indonesian conversational voice.
-Friendly.
-Relaxed.
-Not like a television commercial.
+Natural Indonesian spoken dialogue.
 No music.
-
-TIMING:
-
-Dialogue must fit naturally inside approximately 8–10 seconds.
-Do not speak too fast.
-
-NO subtitles.
-NO captions.
-NO random text.
-NO watermark.
-
-${styleDNA()}
-`;
-
-
-const scene2=`
-
-SCENE 2 — 10 SECONDS
-
-CONTINUITY:
-
-Direct continuation from Scene 1.
-
-Use the EXACT SAME CHARACTER REFERENCE IMAGE.
-
-Use the EXACT SAME PRODUCT REFERENCE IMAGE.
-
-${characterDNA()}
-
-${productDNA()}
-
-ACTION:
-
-Change camera angle from Scene 1.
-
-Show a closer product detail.
-The character naturally touches the fabric, collar, zipper, logo area or another relevant visible detail.
-
-The product must remain exactly identical to the reference.
+No artificial announcer voice.
+No subtitles.
+No text overlay.
 
 DIALOGUE:
+"${narration1}"
 
-"${val("benefit2")}"
+The dialogue must fit naturally within approximately 8–10 seconds.`;
 
-CTA:
+const scene2=
+`SCENE 2 — 10 SECONDS — PRODUCT BENEFIT + CTA
 
-"${val("cta2")}"
+CONTINUITY LOCK:
+Continue with EXACTLY the same character, face, hair, outfit and product from Scene 1.
+Use the same Character Reference Image and Product Reference Image.
+
+PRODUCT:
+${product}
+Color: ${color}
+Brand/Logo: ${brand}
+Printed Text: ${printed}
+Material/Detail: ${material}
+Benefit: ${benefit}
+
+ACTION:
+Character demonstrates the product naturally.
+Include close but realistic B-roll moments:
+hand touching the fabric,
+showing the zipper/collar/detail,
+small natural body movement,
+then return to a comfortable medium shot.
+B-roll must directly support the spoken dialogue.
+
+LOCATION:
+Same environment and lighting continuity as Scene 1.
 
 CAMERA:
+${camera}, natural handheld movement, realistic smartphone footage.
 
-${val("camera")}
+STYLE LOCK:
+${lockText}
 
-Use a natural product-focused close shot for part of the scene, then naturally return toward the character.
-
-AUDIO:
-
-Natural Indonesian daily conversation.
-Friendly.
-Relaxed.
-Soft selling.
-No exaggerated advertising voice.
-No music.
-
-TIMING:
-
-Dialogue must fit naturally inside approximately 8–10 seconds.
-
-NO subtitles.
-NO captions.
-NO random text.
-NO watermark.
-
-${styleDNA()}
-`;
-
-output(
-"affiliateOutput",
-"🎬 SCENE 1 — COPY KE VEO / FLOW",
-scene1
-);
-
-output(
-"affiliateOutput",
-"🎬 SCENE 2 — COPY KE VEO / FLOW",
-scene2
-);
-
-}
-
-
-/* ================= COPY ALL ================= */
-
-function copyAll(){
-
-const blocks=document.querySelectorAll(
-"#affiliateOutput pre"
-);
-
-if(!blocks.length){
-alert("Generate prompt dulu bro.");
-return;
-}
-
-let text="";
-
-blocks.forEach((x,i)=>{
-text+=x.innerText;
-
-if(i<blocks.length-1){
-text+="\n\n==============================\n\n";
-}
-});
-
-navigator.clipboard.writeText(text);
-
-alert("Scene 1 + Scene 2 berhasil dicopy ✓");
-}
-
-
-/* ================= RESET ================= */
-
-function resetAffiliate(){
-
-document.querySelectorAll(
-"#affiliate input,#affiliate textarea"
-).forEach(e=>{
-e.value="";
-});
-
-document.getElementById(
-"affiliateOutput"
-).innerHTML="";
-
-document.getElementById(
-"characterPreview"
-).style.display="none";
-
-document.getElementById(
-"productPreview"
-).style.display="none";
-}
-
-
-/* ================= STORY ================= */
-
-function generateStory(){
-
-document.getElementById("storyOutput").innerHTML="";
-
-const p=`
-
-STORYTELLER VIDEO PROMPT
-
-FORMAT:
-9:16 vertical
-
-TITLE:
-${val("storyTitle")}
-
-DURATION:
-${val("storyDuration")}
-
-GENRE:
-${val("storyGenre")}
-
-STYLE:
-${val("storyStyle")}
-
-MAIN MESSAGE:
-${val("storyMessage")}
-
-CLOSING:
-${val("storyClosing")}
-
-Create realistic Indonesian talking-head storytelling.
-
-Same character throughout.
-
-Natural facial expression.
-Natural blinking.
-Natural breathing.
-Subtle hand gestures.
-Natural body movement.
-
-Delivery must feel like a real person sharing a personal realization.
-
-Do not sound robotic.
-Do not overact.
-Do not use excessive dramatic pauses.
-Keep narration flowing naturally.
-
-Camera:
-Smartphone footage.
-9:16 vertical.
-Natural skin texture.
-No beauty filter.
-No plastic skin.
+CONSISTENCY:
+No face drift.
+No identity change.
+No outfit mutation.
+No product mutation.
+Logo and printed text must remain exactly unchanged.
 No bokeh.
 No background blur.
 
-Audio:
-Natural Indonesian voice.
-Calm.
-Personal.
-Emotionally meaningful.
+AUDIO:
+Natural Indonesian conversational voice.
 No music.
+No subtitles.
+No text overlay.
 
-STRUCTURE:
+DIALOGUE:
+"${narration2}"
 
-HOOK:
-Immediately create curiosity.
+The dialogue must fit naturally within approximately 8–10 seconds.`;
 
-BODY:
-Develop the message naturally using relatable situations.
-
-REFLECTION:
-Deliver the deeper realization.
-
-CLOSING:
-${val("storyClosing")}
-
-NO subtitles.
-NO random text.
-NO watermark.
-`;
-
-output(
-"storyOutput",
-"🎬 STORYTELLER PROMPT",
-p
-);
-
+document.getElementById('scene1Prompt').textContent=scene1;
+document.getElementById('narration1').textContent=narration1;
+document.getElementById('scene2Prompt').textContent=scene2;
+document.getElementById('narration2').textContent=narration2;
 }
-
-
-/* ================= DANCE ================= */
 
 function generateDance(){
 
-document.getElementById("danceOutput").innerHTML="";
+const character=val('danceCharacter') || 'same character as reference';
+const reference=val('danceReference') || 'natural dance choreography';
+const motion=val('motionStyle') || 'realistic human movement';
 
-const p=`
+const output=
+`DANCE VIDEO PROMPT
 
-DANCE VIDEO PROMPT
-
-FORMAT:
-9:16 vertical
+IDENTITY:
+Preserve the exact character identity from the reference image.
+No face drift.
+No hairstyle mutation.
+No body identity change.
+Keep outfit and physical appearance consistent.
 
 CHARACTER:
-${val("danceCharacter")}
+${character}
 
-OUTFIT:
-${val("danceOutfit")}
+CHOREOGRAPHY REFERENCE:
+${reference}
 
-LOCATION:
-${val("danceLocation")}
+MOTION STYLE:
+${motion}
 
-CAMERA:
-${val("danceCamera")}
-
-DANCE REFERENCE:
-${val("danceReference")}
-
-CHARACTER CONSISTENCY:
-
-Same face.
-Same hairstyle.
-Same age.
-Same body proportions.
-Same outfit.
-
-DANCE:
-
-Natural human movement.
-Accurate footwork.
-Realistic weight transfer.
-Natural balance.
-Natural hand and finger movement.
-No broken limbs.
+VIDEO:
+9:16 vertical.
+Realistic human movement.
+Natural body mechanics.
+Correct hands, arms, legs and feet.
 No extra fingers.
-No body distortion.
+No distorted anatomy.
+Smooth transitions between movements.
+Natural facial micro-expressions.
 
 CAMERA:
-
-${val("danceCamera")}
-
-Photorealistic smartphone footage.
-Natural lighting.
-Natural skin texture.
-No plastic AI appearance.
-No bokeh.
+Realistic handheld smartphone footage.
+Natural camera movement.
+No artificial cinematic bokeh.
 No background blur.
 
-NO subtitles.
-NO random text.
-NO watermark.
-`;
+Keep the character recognizable throughout the entire video.
+No subtitles.
+No text overlay.
+No music unless separately added during editing.`;
 
-output(
-"danceOutput",
-"💃 DANCE PROMPT",
-p
-);
+document.getElementById('danceOutput').textContent=output;
+}
 
+function generateStory(){
+
+const idea=val('storyIdea') || 'sebuah kisah reflektif tentang kehidupan';
+const duration=val('storyDuration');
+const genre=val('storyGenre');
+const host=val('storyHost') || 'natural Indonesian male talking-head host';
+
+const output=
+`STORYTELLER VIDEO PROMPT
+
+TOPIC:
+${idea}
+
+GENRE:
+${genre}
+
+DURATION:
+${duration}
+
+HOST:
+${host}
+
+STYLE:
+Human realism.
+Natural talking-head performance.
+Stable character identity.
+Stable face and voice.
+Natural Indonesian conversational delivery.
+Micro-expressions and subtle reactions.
+No excessive dramatic pauses.
+Narration should flow continuously and naturally.
+
+STRUCTURE:
+1. Strong opening hook.
+2. Develop the emotional or psychological situation.
+3. Add relevant B-roll that directly illustrates the narration.
+4. Return to talking head when an important statement is delivered.
+5. End with a memorable self-reminder.
+
+VISUAL:
+9:16 vertical.
+Realistic smartphone footage.
+Natural lighting.
+No artificial bokeh.
+No excessive background blur.
+No subtitles unless added separately in editing.
+
+AUDIO:
+Natural Indonesian voice.
+Clear conversational delivery.
+No music.
+Low or no SFX.
+
+IMPORTANT:
+Keep the host face consistent from beginning to end.
+Do not change identity or clothing between scenes.`;
+
+document.getElementById('storyOutput').textContent=output;
+}
+
+function copyOutput(id){
+
+const text=document.getElementById(id).textContent;
+
+navigator.clipboard.writeText(text).then(()=>{
+alert('Berhasil dicopy bro 🔥');
+}).catch(()=>{
+alert('Copy otomatis gagal. Tekan lama teks lalu pilih Copy.');
+});
+}
+
+function copyAllAffiliate(){
+
+const text=
+`===== SCENE 1 PROMPT =====
+
+${document.getElementById('scene1Prompt').textContent}
+
+===== NARASI SCENE 1 =====
+
+${document.getElementById('narration1').textContent}
+
+===== SCENE 2 PROMPT =====
+
+${document.getElementById('scene2Prompt').textContent}
+
+===== NARASI SCENE 2 =====
+
+${document.getElementById('narration2').textContent}`;
+
+navigator.clipboard.writeText(text).then(()=>{
+alert('Semua Scene + Narasi berhasil dicopy bro 🔥');
+}).catch(()=>{
+alert('Copy otomatis gagal. Silakan copy manual.');
+});
+}
+
+function resetAffiliate(){
+
+document.querySelectorAll('#affiliate input, #affiliate textarea').forEach(el=>{
+if(el.type==='checkbox'){
+el.checked=true;
+}else{
+el.value='';
+}
+});
+
+document.getElementById('charPreview').style.display='none';
+document.getElementById('productPreview').style.display='none';
+
+document.getElementById('scene1Prompt').textContent='Prompt Scene 1 akan muncul di sini...';
+document.getElementById('narration1').textContent='Narasi Scene 1 akan muncul di sini...';
+document.getElementById('scene2Prompt').textContent='Prompt Scene 2 akan muncul di sini...';
+document.getElementById('narration2').textContent='Narasi Scene 2 akan muncul di sini...';
 }
 
 </script>
